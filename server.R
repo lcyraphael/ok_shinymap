@@ -4,7 +4,7 @@ library(maps)
 library(mapproj)
 library(leaflet)
 
-df <- readRDS("data/okdem.rds")
+df <- readRDS("./data/okdem.RDS")
 source("helpers.R")
 
 shinyServer(

@@ -2,8 +2,8 @@
 # It may not work correctly with other data sets if their row order does 
 # not exactly match the order in which the maps package plots counties
 
-aesa1 <- readOGR(dsn = "/Users/raphael/code/ok_lifeline", layer = "adopted_enhanced_support_area")
-aesa <- SpatialPolygons2map(aesa1)
+# aesa1 <- readOGR(dsn = "/Users/raphael/code/ok_lifeline", layer = "adopted_enhanced_support_area")
+# aesa <- SpatialPolygons2map(aesa1)
 
 percent_map <- function(var, color, legend.title, min = 0, max = 100) {
 
@@ -17,7 +17,7 @@ percent_map <- function(var, color, legend.title, min = 0, max = 100) {
     include.lowest = TRUE, ordered = TRUE))
   fills <- shades[percents]
 
-  map(aesa, fill = FALSE, add = TRUE)
+  # map(aesa, fill = FALSE, add = TRUE)
 
   # plot choropleth map
   map("county", region="oklahoma", fill = TRUE, col = fills,
