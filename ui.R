@@ -22,8 +22,8 @@ shinyUI(fluidPage(
     mainPanel(
       tabsetPanel(
         type="tabs",
-        tabPanel(title = "Slider", plotOutput("map1")),
-        tabPanel(title = "Data", leafletOutput("map2")),
+        tabPanel(title = "Drag the Slider", plotOutput("map1")),
+        tabPanel(title = "Explore the Data (Click on the counties)", leafletOutput("map2")),
         tags$script("$('#linkToSlider').click(function() {
                      tabs = $('.tabbable .nav.nav-tabs li a');
                      $(tabs[1]).click();

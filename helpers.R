@@ -1,3 +1,18 @@
+# == Data ==
+# Load in shapefiles from FCC https://www.fcc.gov/general/oklahoma-enhanced-lifeline-support-maps
+aesa <- readOGR(dsn = "./data", layer = "adopted_enhanced_support_area")
+chero <- readOGR(dsn = "./data/", layer = "cherokee_outlet")
+
+# Load in GEOJSON of OK county lines from http://catalog.opendata.city/dataset/oklahoma-counties-polygon/resource/75b87ccf-da9e-464e-814b-16985041d2ca
+okgj <- readOGR(dsn="./data/okcounties.geojson", layer="OGRGeoJSON")
+
+# == For Tab1 == 
+df_rds1 <- readRDS("./data/okdem.RDS")
+
+# == For Tab2 == 
+df_rds2 <- readRDS("./data/okdem2.RDS")
+okgj@data <- df_rds2
+
 # N.B. variables in server.R are accessible here. 
 # Input and output IDs in Shiny apps share a global namespace.
 # Can modularize as well 
@@ -36,7 +51,7 @@ percent_map2 <- function(var, col, legend.title) {
   addPolylines(data=chero, color="blue", popup="Cherokee Outlet")
 }
 
-# For Slider Map (Tab1)
+# For Tab1
 percent_map1 <- function(var, color, legend.title, min = 0, max = 100) {
 
   # generate vector of fill colors for map
@@ -45,7 +60,7 @@ percent_map1 <- function(var, color, legend.title, min = 0, max = 100) {
   # constrain gradient to percents that occur between min and max
   var <- pmax(var, min)
   var <- pmin(var, max)
-  percents <- as.integer(cut(var, 100, include.lowest = TRUE, ordered = TRUE))
+  percents <- as.integer(cut(var, 100, include.lowest = TRUE, ordered = FALSE))
   fills <- shades[percents]
 
   # map(aesa, fill = FALSE, add = TRUE)
