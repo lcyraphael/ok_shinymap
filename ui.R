@@ -7,7 +7,7 @@ shinyUI(fluidPage(
   sidebarLayout(
     sidebarPanel(
       helpText("Create interactive demographic maps with 
-               information from the National Broadband Map."),
+               information from the National Broadband Map and the Federal Communications Commission."),
       
       selectInput("var", 
                   label = "Choose a variable to display",
@@ -16,7 +16,13 @@ shinyUI(fluidPage(
 
       sliderInput("range", 
                   label = "Range of interest: (For Slider)",
-                  min = 0, max = 100, value = c(0, 100))
+                  min = 0, max = 100, value = c(0, 100)),
+
+      tags$hr(),
+      tags$a(href="https://lcyraphael.github.io/oklahoma_lifeline.html", "Read more about visualizing Lifeline"),
+      tags$br(),
+      tags$a(href="https://github.com/lcyraphael/ok_shinymap", "Source code"),
+      tags$h6("By Raphael Leung, Oxford Internet Institute")
       ), 
     
     mainPanel(
