@@ -12,11 +12,26 @@ shinyUI(fluidPage(
                   label = "Choose a variable to display",
                   choices = c("Percent Below Poverty Line", "Percent Native American"),
                   selected = "Percent Below Poverty Line"),
-      
+
       sliderInput("range", 
-                  label = "Range of interest:",
+                  label = "Range of interest: (For Slider)",
                   min = 0, max = 100, value = c(0, 100))
       ), 
-    mainPanel(plotOutput("map"))
+    
+    mainPanel(
+      tabsetPanel(
+        type="tabs",
+        tabPanel(title = "Slider", plotOutput("map1")),
+        tabPanel(title = "Data", leafletOutput("map2")),
+        tags$script("$('#linkToSlider').click(function() {
+                     tabs = $('.tabbable .nav.nav-tabs li a');
+                     $(tabs[1]).click();
+                     })"),
+        tags$script("$('#linkToData').click(function() {
+                     tabs = $('.tabbable .nav.nav-tabs li a');
+                     $(tabs[2]).click();
+                     })")
+        )
+      )
   )
 ))
