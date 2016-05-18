@@ -46,7 +46,6 @@ percent_map1 <- function(var, color, legend.title, min = 0, max = 100) {
   var <- pmax(var, min)
   var <- pmin(var, max)
   percents <- as.integer(cut(var, 100, include.lowest = TRUE, ordered = TRUE))
-  print(percents)
   fills <- shades[percents]
 
   # map(aesa, fill = FALSE, add = TRUE)

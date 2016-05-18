@@ -5,7 +5,7 @@ shinyUI(fluidPage(
   
   sidebarLayout(
     sidebarPanel(
-      helpText("Create demographic maps with 
+      helpText("Create interactive demographic maps with 
                information from the National Broadband Map."),
       
       selectInput("var", 

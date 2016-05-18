@@ -8,9 +8,12 @@ library(rgdal)
 source("helpers.R")
 
 # Load in basic county lines 
-ok <- map("county", region="oklahoma")
+# ok <- map("county", region="oklahoma")
 
+# == For Tab1 == 
 df_rds <- readRDS("./data/okdem.RDS")
+
+# == For Tab2 == 
 
 # Load in shapefiles from FCC 
 # https://www.fcc.gov/general/oklahoma-enhanced-lifeline-support-maps
@@ -32,6 +35,7 @@ okgj@data <- mer
 
 shinyServer(
   function(input, output) {
+    
     output$map1 <- renderPlot({
       args1 <- switch(input$var,
                      "Percent Below Poverty Line" = list(df_rds$incomeBelowPoverty*100, "darkgreen", "% Below Poverty Line"),
@@ -41,6 +45,7 @@ shinyServer(
       
       do.call(percent_map1, args1)
     })
+    
     output$map2 <- renderLeaflet({
       # Pass in var as obtained from SelectInput from ui.R
       args2 <- switch(input$var,
@@ -48,14 +53,5 @@ shinyServer(
                      "Percent Native American" = list(okgj@data$raceNativeAmerican, "YlOrRd", "% Native American"))      
       do.call(percent_map2, args2)
     })
-    
-   #   plot(selectedData(),
-   #        col = clusters()$cluster,
-   #        pch = 20, cex = 3)
-   #   points(clusters()$centers, pch = 4, cex = 4, lwd = 4)
-   # })
-   # output$table <- renderDataTable({
-   #   selectedData()
-   # })
   }
 )
