@@ -15,7 +15,7 @@ shinyUI(fluidPage(
                   selected = "Percent Below Poverty Line"),
 
       sliderInput("range", 
-                  label = "Range of interest: (For Slider)",
+                  label = "Range of interest: (For slider tab)",
                   min = 0, max = 100, value = c(0, 100)),
 
       tags$hr(),
@@ -28,17 +28,9 @@ shinyUI(fluidPage(
     mainPanel(
       tabsetPanel(
         type="tabs",
-        tabPanel(title = "Drag the Slider", plotOutput("map1")),
-        tabPanel(title = "Explore the Data (Click on the counties)", leafletOutput("map2")),
-        tags$script("$('#linkToSlider').click(function() {
-                     tabs = $('.tabbable .nav.nav-tabs li a');
-                     $(tabs[1]).click();
-                     })"),
-        tags$script("$('#linkToData').click(function() {
-                     tabs = $('.tabbable .nav.nav-tabs li a');
-                     $(tabs[2]).click();
-                     })")
-        )
+        tabPanel(title = "Drag the slider", plotOutput("map1")),
+        tabPanel(title = "Explore the data (Click on the counties)", leafletOutput("map2"))
       )
+    )
   )
 ))

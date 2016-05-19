@@ -2,8 +2,8 @@ name: ok_shiny
 account: raphael
 server: shinyapps.io
 appId: 102074
-bundleId: 454961
+bundleId: 456454
 url: https://raphael.shinyapps.io/ok_shiny/
-when: 1463538962.59785
+when: 1463660252.12119
 asMultiple: FALSE
 asStatic: FALSE
